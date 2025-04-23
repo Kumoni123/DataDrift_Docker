@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  drift-detect:
+    build: .
+    container_name: drift-detect
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./reporte:/app/reporte
+
+    depends_on:
+      - run-script
+  run-script:
+    build: .
+    command: python src/main.py
+    volumes:
+      - ./reporte:/app/reporte
+
